@@ -1,6 +1,6 @@
 function formOps() {
   const form = document.querySelector('#main-form');
-  console.log(form)
+  // console.log(form)
   function error(element) {
 
   }
@@ -9,22 +9,30 @@ function formOps() {
 
   }
 
-  function createElement(elements) {
-    const elements = ['email', 'country', 'zip', 'password', 'password-confirm'];
-    const elementStorage = {};
-    elements.forEach((element) => {
-      elementStorage[element] = document.getElementById(`${element}`);
-      console.log(element)
-      console.log(elementStorage)
-    })
-    function getElements() {
-      return elementStorage;
-    }
-    return { getElements }
-  }
+  function elementStack() {
+    
+    function createElement() {
+      const elementStorage = {};
+      const elements = ['email', 'country', 'zip', 'password', 'password-confirm'];
+      elements.forEach((element) => {
+        elementStorage[element] = document.getElementById(`${element}`);
+        // console.log(element)
+        // console.log(elementStorage)
+      })
+      function getElements() {
+        return elementStorage;
+      }
+      return { createElement, getElements }
 
-  return { createElement };
+    }
+    
+    return { createElement };
+  }
+  return { elementStack }
 }
-console.log(formOps().createElement())
-console.log(formOps().createElement().getElements().zip)
-formOps().createElement().getElements().zip.style.backgroundColor = 'red';
+
+
+
+(formOps().elementStack().createElement())
+console.log('yo', formOps().elementStack().createElement().getElements())
+formOps().elementStack().createElement().getElements().zip.style.backgroundColor = 'red';
