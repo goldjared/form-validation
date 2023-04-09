@@ -9,6 +9,25 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <form action="post" novalidate>
+    <legend>yo</legend>
+    <label for="email">Email:</label>
+    <input type="email" id="email" required>
+    <label for="country">Country:</label>
+    <select id="country">
+      <option value="ch">Switzerland</option>
+      <option value="fr">France</option>
+      <option value="de">Germany</option>
+      <option value="nl">The Netherlands</option>
+      <option value="us">United States</option>
+    </select>
+    <label for="zip">Zip Code:</label>
+    <input type="number" id="zip">
+    <label for="password">Password:</label>
+    <input type="text" id="password">
+    <label for="password-confirm">Confirm Password:</label>
+    <input type="text" id="password-confirm">
+  </form>
   
 </body>
 </html>
