@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <form action="post" novalidate>
+  <form action="post" id="main-form" novalidate>
     <legend>yo</legend>
     <label for="email">Email:</label>
     <input type="email" id="email" required>
@@ -28,6 +28,6 @@
     <label for="password-confirm">Confirm Password:</label>
     <input type="text" id="password-confirm">
   </form>
-  
+  <button type="submit" id="submit-btn" form="main-form" value="submit">Submit</button>
 </body>
 </html>
