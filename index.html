@@ -12,9 +12,9 @@
   <form action="post" id="main-form" novalidate>
     <legend>yo</legend>
     <label for="email">Email:</label>
-    <input type="email" id="email" required>
+    <input type="email" id="email" required maxlength="20">
     <label for="country">Country:</label>
-    <select id="country">
+    <select id="country" required>
       <option value="ch">Switzerland</option>
       <option value="fr">France</option>
       <option value="de">Germany</option>
@@ -22,11 +22,11 @@
       <option value="us">United States</option>
     </select>
     <label for="zip">Zip Code:</label>
-    <input type="tel" id="zip">
+    <input type="tel" id="zip" required>
     <label for="password">Password:</label>
-    <input type="text" id="password">
+    <input type="text" id="password" required>
     <label for="password-confirm">Confirm Password:</label>
-    <input type="text" id="password-confirm">
+    <input type="text" id="password-confirm" required>
   </form>
   <button type="submit" id="submit-btn" form="main-form" value="submit">Submit</button>
 </body>
