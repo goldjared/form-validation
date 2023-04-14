@@ -12,8 +12,8 @@ const htmlElements = (function () {
   elements.forEach((element) => {
     elementStorage[element] = document.getElementById(`${element}`);
 
-    elementStorage[element].addEventListener('focusout', validateQueue);
-    elementStorage[element].addEventListener('keydown', validateQueue);
+    elementStorage[element].addEventListener('focusout', validate);
+    // elementStorage[element].addEventListener('keydown', validateQueue);
 
   });
   return { elementStorage }
@@ -21,14 +21,16 @@ const htmlElements = (function () {
 
 function error(e, errorMsg) {
   if(e.srcElement.validity.valueMissing) {
-    errorMsg.textContent = 'Required'
+    errorMsg.textContent = 'Required';
+  } else if(e.srcElement.validity.tooShort) {
+    console.log('fired 2')
+    console.log(e.srcElement.value.length)
+    console.log(e.srcElement.value)
+    errorMsg.textContent = `Too short (${e.srcElement.value.length}/6)`
+  } else if(e.srcElement.validity.typeMismatch) {
+    console.log('fired 3')
+    errorMsg.textContent = 'Follow correct format john@smith.com' 
   }
-  // shit coming here HAS an error. it's aleady proven.
-  // this to determine what error is, print it, give it the error class.
-  // console.log(errorMsg, 'error');
-  // e.srcElement.classList.toggle('error')
-  // errorMsg.textContent = 'error bro'
-  // this should 
   if(e.srcElement.className === 'error') {
     return;
   }
@@ -36,27 +38,22 @@ function error(e, errorMsg) {
   e.srcElement.classList.toggle('error')
  
 }
-function validateQueue(e) {
-  const errorMsg = e.srcElement.nextSibling;
-  console.log(errorMsg, 'errorMsg')
-  console.log(e.srcElement.className, 'here')
-  // console.log(e.srcElement.nextSibling);
-  console.log(e.type);
-  if(errorMsg.classList === 'error' && e.type === 'keypress') { // if error is on
-    validate(e)
-  } else if(e.type === 'focusout') { // if error is on
-    validate(e)
-  }
+
   function validate(e) {
+  const errorMsg = e.srcElement.nextSibling;
     if(!e.srcElement.validity.valid) {
       error(e, errorMsg)
     } else {
-      return
+      // e.srcElement.classList.toggle('error');
+      if(e.srcElement.className === 'error') {
+      e.srcElement.classList.toggle('error');
+
+      }
+      errorMsg.textContent = '';
     }
 
   }
 
-}
 
 htmlElements.elementStorage.email.style.backgroundColor = 'red';
 
