@@ -12,13 +12,7 @@ const htmlElements = (function () {
   elements.forEach((element) => {
     elementStorage[element] = document.getElementById(`${element}`);
   });
-
-  return {
-    get: function() {
-      return elementStorage;
-    }
-  };
+  return { elementStorage }
 }());
 
-console.log(htmlElements.get().email);
-htmlElements.get().email.style.backgroundColor = 'red';
+
