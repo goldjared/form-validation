@@ -40,7 +40,7 @@ function error(e, errorMsg) {
 }
 
   function validate(e) {
-  const errorMsg = e.srcElement.nextSibling;
+  const errorMsg = e.srcElement.nextElementSibling;
     if(!e.srcElement.validity.valid) {
       error(e, errorMsg)
     } else {
