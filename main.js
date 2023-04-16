@@ -35,18 +35,32 @@ function error(e, errorMsg) {
  
 }
 
-  function validate(e) {
+function zipVal(country, e) {
+console.log(country)
+console.log(e)
+// we need to set the zip input to either valid or invalid
+// based on the value it has, and the country code supplied
+const countries = {
+  
+}
+}
+
+function validate(e) {
   const errorMsg = e.srcElement.nextElementSibling;
-    if(!e.srcElement.validity.valid) {
-      error(e, errorMsg)
-    } else {
-      if(e.srcElement.className === 'error') {
-      e.srcElement.classList.toggle('error');
-
-      }
-      errorMsg.textContent = '';
-    }
-
+  if(e.srcElement.id === 'zip') {
+    //
+    zipVal(htmlElements.elementStorage.country.value, e);
   }
+  if(!e.srcElement.validity.valid) {
+    error(e, errorMsg)
+  } else {
+    if(e.srcElement.className === 'error') {
+    e.srcElement.classList.toggle('error');
+
+    }
+    errorMsg.textContent = '';
+  }
+
+}
 
 
