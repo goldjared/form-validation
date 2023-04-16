@@ -31,11 +31,16 @@ function error(e, errorMsg) {
     return;
   }
 
+  if(e === 'zip') {
+    
+  }
+
   e.srcElement.classList.toggle('error')
  
 }
 
-function zipVal(country, zip) {
+function validate(e) {
+ function zipVal(country, zip) {
   console.log(country)
   console.log(zip)
   // we need to set the zip input to either valid or invalid
@@ -69,10 +74,11 @@ function zipVal(country, zip) {
   console.log(constraint);
   const result = constraint.test(zip)
   console.log(result)
-}
-
-function validate(e) {
-  const errorMsg = e.srcElement.nextElementSibling;
+  if(result === false) {
+    error('zip', )
+  }
+} 
+const errorMsg = e.srcElement.nextElementSibling;
   if(e.srcElement.id === 'zip') {
     //
     zipVal(htmlElements.elementStorage.country.value, htmlElements.elementStorage.zip.value);
