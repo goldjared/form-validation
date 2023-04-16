@@ -23,12 +23,8 @@ function error(e, errorMsg) {
   if(e.srcElement.validity.valueMissing) {
     errorMsg.textContent = 'Required';
   } else if(e.srcElement.validity.tooShort) {
-    console.log('fired 2')
-    console.log(e.srcElement.value.length)
-    console.log(e.srcElement.value)
     errorMsg.textContent = `Too short (${e.srcElement.value.length}/6)`
   } else if(e.srcElement.validity.typeMismatch) {
-    console.log('fired 3')
     errorMsg.textContent = 'Follow correct format john@smith.com' 
   }
   if(e.srcElement.className === 'error') {
@@ -44,7 +40,6 @@ function error(e, errorMsg) {
     if(!e.srcElement.validity.valid) {
       error(e, errorMsg)
     } else {
-      // e.srcElement.classList.toggle('error');
       if(e.srcElement.className === 'error') {
       e.srcElement.classList.toggle('error');
 
@@ -54,6 +49,4 @@ function error(e, errorMsg) {
 
   }
 
-
-htmlElements.elementStorage.email.style.backgroundColor = 'red';
 
