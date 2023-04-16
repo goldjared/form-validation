@@ -35,21 +35,47 @@ function error(e, errorMsg) {
  
 }
 
-function zipVal(country, e) {
-console.log(country)
-console.log(e)
-// we need to set the zip input to either valid or invalid
-// based on the value it has, and the country code supplied
-const countries = {
-  
-}
+function zipVal(country, zip) {
+  console.log(country)
+  console.log(zip)
+  // we need to set the zip input to either valid or invalid
+  // based on the value it has, and the country code supplied
+  const constraints = {
+    ch: [
+      "^(CH-)?\\d{4}$",
+      "Switzerland ZIPs must have exactly 4 digits: e.g. CH-1950 or 1950",
+    ],
+    fr: [
+      "^(F-)?\\d{5}$",
+      "France ZIPs must have exactly 5 digits: e.g. F-75012 or 75012",
+    ],
+    de: [
+      "^(D-)?\\d{5}$",
+      "Germany ZIPs must have exactly 5 digits: e.g. D-12345 or 12345",
+    ],
+    nl: [
+      "^(NL-)?\\d{4}\\s*([A-RT-Z][A-Z]|S[BCE-RT-Z])$",
+      "Netherland ZIPs must have exactly 4 digits, followed by 2 letters except SA, SD and SS",
+    ],
+    us: [
+      "^\\d{5}$",
+      "United States ZIPs must have exactly 5 digits"
+    ]
+  };
+// wwe got country, we got zip. based on country, we run the zip against its regex.
+// const result = constraints[country][0].test('zip');
+// console.log(constraints[country][0].test());
+  const constraint = new RegExp(constraints[country][0], "");
+  console.log(constraint);
+  const result = constraint.test(zip)
+  console.log(result)
 }
 
 function validate(e) {
   const errorMsg = e.srcElement.nextElementSibling;
   if(e.srcElement.id === 'zip') {
     //
-    zipVal(htmlElements.elementStorage.country.value, e);
+    zipVal(htmlElements.elementStorage.country.value, htmlElements.elementStorage.zip.value);
   }
   if(!e.srcElement.validity.valid) {
     error(e, errorMsg)
