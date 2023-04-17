@@ -26,6 +26,11 @@ function error(e, errorMsg, zipError) {
     console.log(errorMsg)
     e.srcElement.setCustomValidity("Invalid field.");
   }
+  if(e.srcElement.id === 'password-confirm') {
+    errorMsg.textContent = `Passwords do not match.`;
+    console.log(errorMsg)
+    e.srcElement.setCustomValidity("Invalid field.");
+  }
 
 
   if(e.srcElement.className === 'error') {
@@ -41,8 +46,23 @@ function validate(e) {
       e.srcElement.classList.toggle('error');
       }
       errorMsg.textContent = '';
-    if(e.srcElement.id === 'zip') {
+    if(e.srcElement.id === 'zip'|| e.srcElement.id === 'password-confirm') {
       e.srcElement.setCustomValidity("");
+    }
+  }
+  function passVal() {
+    const passMsg = {
+      match: () => {
+        killError()
+      },
+      different: () => {
+        error(e, errorMsg)
+      }
+    }
+    if(e.srcElement.value === htmlElements.elementStorage.password.value) {
+      passMsg.match();
+    } else {
+      passMsg.different();
     }
   }
   function zipVal(country, zip) {
@@ -89,6 +109,11 @@ function validate(e) {
   if(e.srcElement.id === 'zip') {
     //
     zipVal(htmlElements.elementStorage.country.value, htmlElements.elementStorage.zip.value);
+    return;
+  }
+  if(e.srcElement.id === 'password-confirm') {
+    //
+    passVal();
     return;
   }
   if(!e.srcElement.validity.valid) {
