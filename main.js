@@ -125,4 +125,16 @@ function validate(e) {
 
 }
 
+(function submit() {
+  const submitBtn = document.getElementById('submit-btn');
+  submitBtn.addEventListener('click', (e) => {
+    e.preventDefault();
+    Object.values(htmlElements.elementStorage).forEach(item => {
+      if(item.className === 'error') {
+      alert(`there is an error in form`)
+    }
+  })
+  })
+}())
+
 
