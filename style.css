@@ -15,7 +15,7 @@ input:valid {
 }
 
  
-input:not(:focus):invalid {
+input:not(:placeholder-shown):invalid {
   border-color: darkred;
 }
 
