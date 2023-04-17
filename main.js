@@ -24,6 +24,7 @@ function error(e, errorMsg, zipError) {
   if(e.srcElement.id === 'zip') {
     errorMsg.textContent = `${zipError}`;
     console.log(errorMsg)
+    e.srcElement.setCustomValidity("Invalid field.");
   }
 
 
@@ -40,7 +41,9 @@ function validate(e) {
       e.srcElement.classList.toggle('error');
       }
       errorMsg.textContent = '';
-   
+    if(e.srcElement.id === 'zip') {
+      e.srcElement.setCustomValidity("");
+    }
   }
   function zipVal(country, zip) {
     console.log(country)
@@ -77,6 +80,8 @@ function validate(e) {
     if(result === false) {
       error(e, errorMsg, constraints[country][1])
     } else {
+
+      console.log(e.srcElement.validity)
       killError();
     }
   } 
@@ -89,6 +94,7 @@ function validate(e) {
   if(!e.srcElement.validity.valid) {
     error(e, errorMsg)
   } else {
+    console.log(e.srcElement.validity)
     killError();
   }
 
