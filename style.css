@@ -9,3 +9,15 @@ form {
   padding: 10px;
   width: 25%;
 }
+
+input:valid {
+  border-color: green;
+}
+
+input:invalid {
+  border-color: darkred;
+}
+
+span {
+  background-color: wheat;
+}
