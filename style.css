@@ -18,6 +18,3 @@ input:valid {
 input:not(:placeholder-shown):invalid {
   border-color: darkred;
 }
-
-span {
-}
